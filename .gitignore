@@ -1,0 +1,3 @@
+backend/src/config/token-secret.js
+backend/src/config/dbConfig.js
+node_modules/
