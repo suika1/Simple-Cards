@@ -5,7 +5,7 @@ import * as CardController from '../../controllers/card';
 const router = express.Router();
 
 router.post('/', CardController.createCard);
-router.get('/', CardController.readCard);
+router.get('/', CardController.getAllCards);
 router.put('/:id', CardController.updateCard);
 router.delete('/:id', CardController.deleteCard);
 
