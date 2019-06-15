@@ -1,0 +1,31 @@
+{
+    "rules": {
+        "semi": "off",
+        "allowArrowFunctions": true,
+        "react/no-unescaped-entities": "off",
+        "import/no-namespace": "off",
+        "arrow-body-style": "off",
+        "no-console": "warn"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module"
+    },
+    "globals": {
+      "fetch": false,
+      "window": false,
+      "document": false,
+      "require": false,
+      "module": false,
+      "__dirname": false,
+      "navigator": false,
+      "clearInterval": false,
+      "setInterval": false,
+      "alert": false
+    },
+    "extends": [
+      "eslint:recommended",
+      "node"
+    ]
+}
