@@ -14,7 +14,12 @@ export const createUser = async (req, res, next) => {
       password,
     } = req.body;
 
-    if (!email || !password) throw new Error('Bad arguments');
+    if (!email || !password) return utils.generateResponse({
+      res,
+      status: 400,
+      ok: false,
+      error: 'Bad arguments',
+    });
 
     // check if exists
     const foundUser = await User.findOne({
@@ -28,7 +33,7 @@ export const createUser = async (req, res, next) => {
         res,
         status: 400,
         ok: false,
-        error: 'user already exists',
+        error: 'User already exists',
       });
     }
 
@@ -59,7 +64,11 @@ export const validateUser = async (req, res, next) => {
       password,
     } = req.body;
 
-    if (!email || !password) throw new Error('Bad arguments');
+    if (!email || !password) return utils.generateResponse({
+      res,
+      status: 400,
+      error: 'Bad arguments',
+    });
 
     const foundUser = await User.findOne({
       where: {
