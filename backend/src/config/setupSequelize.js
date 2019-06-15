@@ -32,7 +32,7 @@ export default new Promise(async res => {
   User.hasMany(Card);
 
   // sync db and models
-  await sequelize.sync({ force: true })
+  await sequelize.sync()
 
   // test connection
   try {
