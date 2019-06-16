@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
-import { username, password, host, port, database } from './dbConfig';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import UserModel from '../models/user';
 import CardModel from '../models/card';
@@ -8,13 +9,21 @@ const models = {};
 
 export default new Promise(async res => {
   // create connection
+  const {
+    DB_USERNAME,
+    PASSWORD,
+    DATABASE,
+    HOST,
+    PORT,
+  } = process.env;
+
   const sequelize = new Sequelize(
-    database,
-    username,
-    password,
+    DATABASE,
+    DB_USERNAME,
+    PASSWORD,
     {
-      host,
-      port,
+      host: HOST,
+      port: PORT,
       dialect: 'mysql',
       pool: {
         max: 10,

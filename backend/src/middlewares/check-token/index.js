@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import tokenSecret from '../../config/token-secret';
 import * as utils from '../../utils';
+
+const tokenSecret = process.env.TOKEN_SECRET;
 
 const checkToken = (req, res, next) => {
   if (req.method === 'OPTIONS') next();

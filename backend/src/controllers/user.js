@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import * as utils from '../utils';
 import { getModels } from '../config/setupSequelize';
 
-import tokenSecret from '../config/token-secret';
+const tokenSecret = process.env.TOKEN_SECRET;
 
 export const createUser = async (req, res, next) => {
   try {
