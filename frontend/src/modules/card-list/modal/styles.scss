@@ -1,0 +1,21 @@
+.container {
+  width: 400px;
+  position: absolute;
+
+  background-color: white;
+  top: 200px;
+  left: calc(50% - 200px);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  width: 70%;
+}
+
+.submitBtn {
+  max-width: 200px;
+  margin: 15px auto !important;
+}
