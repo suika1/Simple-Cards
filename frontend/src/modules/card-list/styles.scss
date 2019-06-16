@@ -1,0 +1,25 @@
+.container {
+  margin-top: 20px;
+}
+
+.cardHeaderText {
+  word-break: break-all;
+}
+
+.cardText {
+  word-wrap: break-word;
+}
+
+.exitBtn {
+  position: absolute !important;
+
+  top: 10px;
+  right: 50px;
+}
+
+.createBtn {
+  position: relative;
+
+  top: 45px;
+  left: calc(50% - 20px);
+}
