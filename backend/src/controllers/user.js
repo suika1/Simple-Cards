@@ -41,10 +41,11 @@ export const createUser = async (req, res, next) => {
     const hash = await bcrypt.hash(password, saltRounds);
 
     const token = jwt.sign(
-      { email },
+      { email, hash },
       tokenSecret,
-      { expiresIn: '24h' }, // expires in 24 hours
+      { expiresIn: '24h' },
     );
+
     const createdUser = await User.create({
       email,
       hash,
@@ -90,13 +91,51 @@ export const validateUser = async (req, res, next) => {
     });
 
     const token = jwt.sign(
-      { email },
+      { email, hash: foundUser.hash },
       tokenSecret,
-      { expiresIn: '24h' }, // expires in 24 hours
+      { expiresIn: '24h' },
     );
 
     return utils.generateResponse({
       res,
+      token,
+      results: foundUser,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export const validateByToken = async (req, res, next) => {
+  try {
+    const { User } = getModels();
+    const {
+      email,
+      hash,
+    } = req.decoded;
+
+    const foundUser = await User.findOne({
+      where: {
+        email,
+        hash,
+      },
+    });
+
+    if (!foundUser) return utils.generateResponse({
+      res,
+      status: 401,
+      error: 'User not found',
+    });
+
+    const token = jwt.sign(
+      { email, hash },
+      tokenSecret,
+      { expiresIn: '24h' },
+    );
+
+    return utils.generateResponse({
+      res,
+      results: foundUser,
       token,
     });
   } catch (err) {
